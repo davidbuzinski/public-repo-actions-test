@@ -1,0 +1,28 @@
+name: Private Repo Test
+on: [push]
+
+jobs:
+  bat:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: davidbuzinski/setup-matlab
+          path: .github/actions/setup-matlab
+          ref: mpm
+      - uses: actions/checkout@v2
+        with:
+          repository: davidbuzinski/run-command
+          path: .github/actions/run-command
+          ref: matlab-batch
+      - name: Setup Matlab 
+        uses: ./.github/actions/setup-matlab
+        with:
+          release: R2020b
+          products: MATLAB Parallel_Computing_Toolbox
+      - name: Run Matlab 
+        uses: ./.github/actions/run-command
+        with:
+          command: "disp('yo world');"
