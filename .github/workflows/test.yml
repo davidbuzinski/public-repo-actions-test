@@ -20,7 +20,7 @@ jobs:
       - name: Setup Matlab 
         uses: ./.github/actions/setup-matlab
         with:
-          release: R2020b
+          release: R2021a
           products: MATLAB Parallel_Computing_Toolbox
       - name: Run Matlab 
         uses: ./.github/actions/run-command
