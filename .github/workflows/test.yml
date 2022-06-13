@@ -1,4 +1,4 @@
-name: Private Repo Test
+name: Public Repo Test
 on: [push]
 
 jobs:
