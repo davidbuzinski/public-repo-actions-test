@@ -5,32 +5,33 @@ jobs:
   matlab-docker:
     runs-on: ubuntu-latest
     container:
-      image: public.ecr.aws/v0n4a2e1/matlab-ci-test:minimal
+      image: mathworks/matlab:r2021a
     steps:
-         - name: hello
-           run: |
-             run-matlab-command "disp('hello')"
-  bat:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
-        with:
-          repository: davidbuzinski/setup-matlab
-          path: .github/actions/setup-matlab
-          ref: mpm
-      - uses: actions/checkout@v2
-        with:
-          repository: davidbuzinski/run-command
-          path: .github/actions/run-command
-          ref: matlab-batch
-      - name: Setup Matlab 
-        uses: ./.github/actions/setup-matlab
-        with:
-          release: R2021a
-          products: MATLAB Parallel_Computing_Toolbox
       - name: Run Matlab 
         uses: ./.github/actions/run-command
         with:
           command: "disp('yo world');"
+#   bat:
+#     name: Build and Test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/checkout@v2
+#         with:
+#           repository: davidbuzinski/setup-matlab
+#           path: .github/actions/setup-matlab
+#           ref: mpm
+#       - uses: actions/checkout@v2
+#         with:
+#           repository: davidbuzinski/run-command
+#           path: .github/actions/run-command
+#           ref: matlab-batch
+#       - name: Setup Matlab 
+#         uses: ./.github/actions/setup-matlab
+#         with:
+#           release: R2021a
+#           products: MATLAB Parallel_Computing_Toolbox
+#       - name: Run Matlab 
+#         uses: ./.github/actions/run-command
+#         with:
+#           command: "disp('yo world');"
