@@ -21,7 +21,7 @@ jobs:
           ref: matlab-batch
       - name: Missing wget
         run: |
-          apt-get update && apt-get install wget  && curl google.com
+          apt-get update && apt-get install -y wget
       - name: Run Matlab 
         uses: ./.github/actions/run-command
         with:
