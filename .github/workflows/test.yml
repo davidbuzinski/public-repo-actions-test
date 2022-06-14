@@ -19,6 +19,9 @@ jobs:
           repository: davidbuzinski/run-command
           path: .github/actions/run-command
           ref: matlab-batch
+      - name: Missing wget
+        run: |
+          apt-get update && apt-get install wget  && curl google.com
       - name: Run Matlab 
         uses: ./.github/actions/run-command
         with:
