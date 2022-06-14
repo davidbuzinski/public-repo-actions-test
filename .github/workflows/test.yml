@@ -5,7 +5,7 @@ jobs:
   matlab-docker:
     runs-on: ubuntu-latest
     container:
-      image: public.ecr.aws/v0n4a2e1/matlab-ci-test:r2022a
+      image: public.ecr.aws/v0n4a2e1/matlab-ci-test:minimal
     steps:
          - name: hello
            run: |
