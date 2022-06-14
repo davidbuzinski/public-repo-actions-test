@@ -2,6 +2,14 @@ name: Public Repo Test
 on: [push]
 
 jobs:
+  matlab-docker:
+    runs-on: ubuntu-latest
+    container:
+      image: public.ecr.aws/v0n4a2e1/matlab-ci-test:r2022a
+    steps:
+         - name: hello
+           run: |
+             run-matlab-command "disp('hello')"
   bat:
     name: Build and Test
     runs-on: ubuntu-latest
