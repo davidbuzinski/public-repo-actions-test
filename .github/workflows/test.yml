@@ -27,7 +27,7 @@ jobs:
         with:
           release: R2021a
           destination: /opt/matlab/R2021a
-          products: Parallel_Computing_Toolbox
+          products: Parallel_Computing_Toolbox Simulink
       - name: Run Matlab 
         uses: ./.github/actions/run-command
         with:
