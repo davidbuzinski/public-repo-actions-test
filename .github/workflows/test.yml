@@ -24,11 +24,13 @@ jobs:
           ref: matlab-batch
       - name: Missing wget
         run: |
-          apt-get update && apt-get install -y wget
+          apt-get update && apt-get install -y wget && \
+          echo "${version^}"
       - name: Setup Matlab 
         uses: ./.github/actions/setup-matlab
         with:
           release: ${{ matrix.version }}
+          destination: /opt/matlab/${}
           products: Parallel_Computing_Toolbox
       - name: Run Matlab 
         uses: ./.github/actions/run-command
