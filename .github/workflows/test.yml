@@ -22,6 +22,12 @@ jobs:
       - name: Missing wget
         run: |
           apt-get update && apt-get install -y wget
+      - name: Setup Matlab 
+        uses: ./.github/actions/setup-matlab
+        with:
+          release: R2021a
+          destination: /opt/matlab/R2021a
+          products: Parallel_Computing_Toolbox
       - name: Run Matlab 
         uses: ./.github/actions/run-command
         with:
