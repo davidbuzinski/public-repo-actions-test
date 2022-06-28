@@ -23,6 +23,8 @@ jobs:
           release: R2021a
           products: MATLAB Parallel_Computing_Toolbox
       - name: Run Matlab 
+        env:
+          MATHWORKS_LICENSING_ENDPOINT: dev
         uses: ./.github/actions/run-command
         with:
           command: "disp('yo world');"
