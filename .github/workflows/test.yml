@@ -31,12 +31,7 @@ jobs:
 
   ematlabAndMatlabBatch:
     name: ematlab + matlab-batch
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-          - os: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
