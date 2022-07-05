@@ -2,8 +2,8 @@ name: Private Repo Test
 on: [push]
 
 jobs:
-  bat:
-    name: Build and Test
+  mpmAndMatlabBatch:
+    name: MPM + matlab-batch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,3 +28,69 @@ jobs:
         uses: ./.github/actions/run-command
         with:
           command: "disp('yo world');"
+
+  ematlabAndMatlabBatch:
+    name: ematlab + matlab-batch
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+          - os: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: davidbuzinski/setup-matlab
+          path: .github/actions/setup-matlab
+          ref: skip-activation
+      - uses: actions/checkout@v2
+        with:
+          repository: davidbuzinski/run-command
+          path: .github/actions/run-command
+          ref: matlab-batch
+      - name: Setup Matlab 
+        uses: ./.github/actions/setup-matlab
+        with:
+          release: R2021a
+          activate: false
+      - name: Run Matlab 
+        env:
+          MATHWORKS_LICENSING_ENDPOINT: dev
+        uses: ./.github/actions/run-command
+        with:
+          command: "disp('yo world');"
+          
+  dockerAndMatlabBatch:
+    name: docker + matlab-batch
+    runs-on: ubuntu-latest
+    container:
+      image: mathworks/matlab:r2021a
+      options: --user 0
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2
+          with:
+            repository: davidbuzinski/setup-matlab
+            path: .github/actions/setup-matlab
+            ref: mpm
+        - uses: actions/checkout@v2
+          with:
+            repository: davidbuzinski/run-command
+            path: .github/actions/run-command
+            ref: matlab-batch
+        - name: Missing wget
+          run: |
+            apt-get update && apt-get install -y wget
+        - name: Setup Matlab 
+          uses: ./.github/actions/setup-matlab
+          with:
+            release: R2021a
+            destination: /opt/matlab/
+            products: Parallel_Computing_Toolbox
+        - name: Run Matlab 
+          env:
+            MATHWORKS_LICENSING_ENDPOINT: dev
+          uses: ./.github/actions/run-command
+          with:
+            command: "disp('yo world');"
