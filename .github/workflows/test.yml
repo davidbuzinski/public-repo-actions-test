@@ -46,9 +46,6 @@ jobs:
           ref: matlab-batch
       - name: Setup Matlab 
         uses: ./.github/actions/setup-matlab
-        with:
-          release: R2021a
-          activate: false
       - name: Run Matlab 
         env:
           MATHWORKS_LICENSING_ENDPOINT: dev
