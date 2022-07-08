@@ -31,7 +31,13 @@ jobs:
 
   ematlabAndMatlabBatch:
     name: ematlab + matlab-batch
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+          - os: macos-latest
+          - os: windows-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
@@ -46,6 +52,8 @@ jobs:
           ref: matlab-batch
       - name: Setup Matlab 
         uses: ./.github/actions/setup-matlab
+        with:
+            release: R2021a
       - name: Run Matlab 
         env:
           MATHWORKS_LICENSING_ENDPOINT: dev
