@@ -1,4 +1,4 @@
-name: Private Repo Test
+name: Public Repo Test
 on: [push]
 
 jobs:
@@ -30,14 +30,12 @@ jobs:
 #           command: "disp('yo world');"
 
   ematlabAndMatlabBatch:
-    name: ematlab + matlab-batch
+    name: ematlab + matlab-batch test
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-          - os: ubuntu-latest
-          - os: macos-latest
-          - os: windows-latest
+          os: [ubuntu-latest, windows-latest, macos-latest]
+          release: [R2021a, R2021b, R2022a]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
@@ -53,14 +51,14 @@ jobs:
       - name: Setup Matlab 
         uses: ./.github/actions/setup-matlab
         with:
-            release: R2021a
-      - name: Run Matlab 
+            release: ${{ matrix.release }}
+      - name: Run Matlab
         env:
           MATHWORKS_LICENSING_ENDPOINT: dev
         uses: ./.github/actions/run-command
         with:
           command: "disp('yo world');"
-          
+                    
 #   dockerAndMatlabBatch:
 #     name: docker + matlab-batch
 #     runs-on: ubuntu-latest
