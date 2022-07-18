@@ -31,11 +31,12 @@ jobs:
 
   ematlabAndMatlabBatch:
     name: ematlab + matlab-batch test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-          os: [ubuntu-latest, windows-latest, macos-latest]
-          release: [R2021a, R2021b, R2022a]
+    runs-on: windows-latest
+#     runs-on: ${{ matrix.os }}
+#     strategy:
+#       matrix:
+#           os: [ubuntu-latest, windows-latest, macos-latest]
+#           release: [R2021a, R2021b, R2022a]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
@@ -51,7 +52,12 @@ jobs:
       - name: Setup Matlab 
         uses: ./.github/actions/setup-matlab
         with:
-            release: ${{ matrix.release }}
+          release: R2022a
+#             release: ${{ matrix.release }}
+      - name: check on stuff
+        run: dir "C:\Program Files\MATLAB"
+      - name: check on stuff
+        run: dir "C:\Program Files\MATLAB\R2022a"
       - name: Run Matlab
         env:
           MATHWORKS_LICENSING_ENDPOINT: dev
