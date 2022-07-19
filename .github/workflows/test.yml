@@ -83,7 +83,7 @@ jobs:
           release: ${{ matrix.release }}
       - name: Run Matlab
         env:
-          MATHWORKS_LICENSING_ENDPOINT: dev
+          MATHWORKS_LICENSING_ENDPOINT: stage
         uses: ./.github/actions/run-command
         with:
           command: "disp('yo world');"
