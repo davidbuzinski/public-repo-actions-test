@@ -79,10 +79,6 @@ jobs:
         uses: ./.github/actions/setup-matlab
         with:
           release: ${{ matrix.release }}
-      - name: check on stuff
-        run: dir "C:\Program Files\MATLAB"
-      - name: check on stuff
-        run: dir "C:\Program Files\MATLAB\R2022a"
       - name: Run Matlab
         env:
           MATHWORKS_LICENSING_ENDPOINT: dev
