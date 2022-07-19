@@ -76,8 +76,6 @@ jobs:
           path: .github/actions/run-command
           ref: matlab-batch
       - name: Setup Matlab 
-        env:
-          MATHWORKS_MATLAB_BATCH_BASE_URL: https://mw-ci-static-dev.s3.amazonaws.com/matlab-batch/v1
         uses: ./.github/actions/setup-matlab
         with:
           release: ${{ matrix.release }}
