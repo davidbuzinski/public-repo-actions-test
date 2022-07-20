@@ -84,7 +84,7 @@ jobs:
           MATHWORKS_LICENSING_ENDPOINT: stage
         uses: ./.github/actions/run-command
         with:
-          command: "disp('yo world');"
+          command: "license inuse"
                     
 #   dockerAndMatlabBatch:
 #     name: docker + matlab-batch
